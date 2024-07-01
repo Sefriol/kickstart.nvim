@@ -320,6 +320,12 @@ do
         run_build(name, { 'make', 'tiktoken' }, ev.data.path)
         return
       end
+
+      if name == 'go.nvim' then
+        if not ev.data.active then vim.cmd.packadd 'go.nvim' end
+        require('go.install').update_all_sync()
+        return
+      end
     end,
   })
 end

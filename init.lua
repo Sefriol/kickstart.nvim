@@ -380,6 +380,8 @@ require('lazy').setup({
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+      -- Put CmdLine into the telescope prompt
+      { 'jonarrien/telescope-cmdline.nvim' },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -419,6 +421,8 @@ require('lazy').setup({
           },
         },
       }
+      require('telescope').load_extension 'cmdline'
+      vim.api.nvim_set_keymap('n', ':', ':Telescope cmdline<CR>', { noremap = true, desc = 'Cmdline' })
 
       -- Enable Telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')

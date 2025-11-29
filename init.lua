@@ -315,6 +315,11 @@ do
         vim.cmd 'TSUpdate'
         return
       end
+
+      if name == 'CopilotChat.nvim' and vim.fn.executable 'make' == 1 then
+        run_build(name, { 'make', 'tiktoken' }, ev.data.path)
+        return
+      end
     end,
   })
 end
